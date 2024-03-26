@@ -26,3 +26,6 @@ npm run dev
    - Best practices?
    - Better code?
    - Structure of the folder?
+   - Style?
+   - Anything that's challenge me like it's real-world?
+   - Any tools recommend like use-immer?

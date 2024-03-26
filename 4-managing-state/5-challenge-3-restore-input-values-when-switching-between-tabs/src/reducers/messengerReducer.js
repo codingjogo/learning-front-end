@@ -1,6 +1,10 @@
 export const initialState = {
-    selectedId: 0,
-    message: "Hello",
+    selectedId: 0, // default value named Taylor
+    messages: {
+        0: 'Hello, Taylor',
+        1: 'Hello, Alice',
+        2: 'Hello, Bob',
+    }
 };
 
 export function messengerReducer(state, action) {
@@ -15,13 +19,22 @@ export function messengerReducer(state, action) {
         case "edited_message": {
             return {
                 ...state,
-                message: action.message,
+                messages: {
+                    ...state.messages,
+                    // this will get the selectedID then clear the input field from textarea
+                    [state.selectedId]: action.message,
+                }
             };
         }
+        // clears field
         case "sent_message": {
             return {
                 ...state,
-                message: "",
+                messages: {
+                    ...state.messages,
+                    // this will get the selectedID then clear the input field from textarea
+                    [state.selectedId]: '',
+                }
             };
         }
         default: {

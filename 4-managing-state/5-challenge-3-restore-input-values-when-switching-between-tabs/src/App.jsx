@@ -3,6 +3,7 @@ import { initialState, messengerReducer } from "./reducers/messengerReducer.js";
 import ContactList from "./components/ContactList.jsx";
 import Chat from "./components/Chat.jsx";
 
+// default contacts
 const contacts = [
     { id: 0, name: "Taylor", email: "taylor@mail.com" },
     { id: 1, name: "Alice", email: "alice@mail.com" },
@@ -11,13 +12,18 @@ const contacts = [
 
 function App() {
     const [state, dispatch] = useReducer(messengerReducer, initialState);
-    const message = state.message;
+    // selects a placeholder for input
+    const message = state.messages[state.selectedId];
+    // finds the default contact ID that's === state.selectedId from reducer
     const contact = contacts.find((c) => c.id === state.selectedId);
     return (
-        <div>
+        <main className="h-screen flex flex-row items-center justify-center gap-4">
             <ContactList
+                // gets the default contacts
                 contacts={contacts}
+                // gets the current ID from initialState of reducer
                 selectedId={state.selectedId}
+                // gets the functions from reducer
                 dispatch={dispatch}
             />
             <Chat
@@ -26,7 +32,7 @@ function App() {
                 contact={contact}
                 dispatch={dispatch}
             />
-        </div>
+        </main>
     );
 }
 
